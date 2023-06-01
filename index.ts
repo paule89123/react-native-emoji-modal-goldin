@@ -12,9 +12,30 @@ import {
   TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const groupBy = require('just-group-by');
-const mapValues = require('just-map-values');
 const noop = () => {};
+
+const justGroupBy = <T>(array: T[], keyFn: (item: T) => string) => {
+  return array.reduce((result: { [key: string]: T[] }, item: T) => {
+    const key = keyFn(item);
+    if (!result[key]) {
+      result[key] = [];
+    }
+    result[key].push(item);
+    return result;
+  }, {});
+}
+
+const justMapValues = <T>(obj: { [key: string]: T }, callback: (value: T) => any) => {
+  const result: { [key: string]: any } = {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      result[key] = callback(obj[key]);
+    }
+  }
+
+  return result;
+}
 
 interface Emoji {
   category: string;
@@ -419,12 +440,12 @@ export default class EmojiModal extends PureComponent<
       }
     });
 
-    const groupedEmojis = groupBy(
+    const groupedEmojis = justGroupBy(
       this.filteredEmojis,
       (emoji: Emoji) => emoji.category,
     );
 
-    this.emojisByCategory = mapValues(groupedEmojis, (group: Array<Emoji>) =>
+    this.emojisByCategory = justMapValues(groupedEmojis, (group: Array<Emoji>) =>
       group.map(charFromEmojiObj),
     );
   }

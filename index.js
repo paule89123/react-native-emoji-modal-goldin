@@ -5,8 +5,7 @@ const react_native_1 = require("react-native");
 const MaterialCommunityIcons_1 = require("react-native-vector-icons/MaterialCommunityIcons");
 const noop = () => { };
 
-
-const justGroupByAgain = (array, keyFn) => {
+const justGroupBy = (array, keyFn) => {
     return array.reduce((result, item) => {
         const key = keyFn(item);
         if (!result[key]) {
@@ -28,14 +27,6 @@ const justMapValues = (obj, callback) => {
 
     return result;
 }
-
-// Example usage:
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const groupedNumbers = justGroupByAgain(numbers, (number) => {
-    return number % 2 === 0 ? 'even' : 'odd';
-});
-
-console.log(groupedNumbers);
 
 // Conversion of codepoints and surrogate pairs. See more here:
 // https://mathiasbynens.be/notes/javascript-unicode
@@ -394,7 +385,7 @@ class EmojiModal extends react_1.PureComponent {
                 return true;
             }
         });
-        const groupedEmojis = justGroupByAgain(this.filteredEmojis, (emoji) => emoji.category);
+        const groupedEmojis = justGroupBy(this.filteredEmojis, (emoji) => emoji.category);
         this.emojisByCategory = justMapValues(groupedEmojis, (group) => group.map(charFromEmojiObj));
     }
     calculateLayouts(props) {
