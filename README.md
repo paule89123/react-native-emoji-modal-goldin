@@ -1,4 +1,4 @@
-# react-native-emoji-modal
+# react-native-emoji-modal-goldin
 
 > Feature-complete emoji picker for React Native that mimics the look and feel of native ones.
 
@@ -23,19 +23,19 @@ This is a rewrite of [react-native-emoji-picker](https://github.com/staltz/react
 ## Installation
 
 ```bash
-pnpm add react-native-emoji-modal
+pnpm add react-native-emoji-modal-goldin
 ```
 
 or
 
 ```bash
-npm install --save react-native-emoji-modal
+npm install --save react-native-emoji-modal-goldin
 ```
 
 ## Usage
 
 ```jsx
-import EmojiModal from 'react-native-emoji-modal';
+import EmojiModal from 'react-native-emoji-modal-goldin';
 
 // ...
 
