@@ -3,9 +3,40 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const react_native_1 = require("react-native");
 const MaterialCommunityIcons_1 = require("react-native-vector-icons/MaterialCommunityIcons");
-const groupBy = require('just-group-by');
-const mapValues = require('just-map-values');
 const noop = () => { };
+
+
+const justGroupByAgain = (array, keyFn) => {
+    return array.reduce((result, item) => {
+        const key = keyFn(item);
+        if (!result[key]) {
+            result[key] = [];
+        }
+        result[key].push(item);
+        return result;
+    }, {});
+}
+
+const justMapValues = (obj, callback) => {
+    const result = {};
+
+    for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            result[key] = callback(obj[key]);
+        }
+    }
+
+    return result;
+}
+
+// Example usage:
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const groupedNumbers = justGroupByAgain(numbers, (number) => {
+    return number % 2 === 0 ? 'even' : 'odd';
+});
+
+console.log(groupedNumbers);
+
 // Conversion of codepoints and surrogate pairs. See more here:
 // https://mathiasbynens.be/notes/javascript-unicode
 // https://mathiasbynens.be/notes/javascript-escapes#unicode-code-point
@@ -186,11 +217,19 @@ class EmojiCategory extends react_1.PureComponent {
 class SearchField extends react_1.PureComponent {
     render() {
         const { customStyle, iconColor, onChanged } = this.props;
-        return (0, react_1.createElement)(react_native_1.View, { style: styles.searchContainer }, (0, react_1.createElement)(MaterialCommunityIcons_1.default, {
+        console.log('++ MaterialCommunityIcons_1', MaterialCommunityIcons_1.default, {
             key: 'a',
             size: SEARCH_ICON_SIZE,
             style: styles.searchIcon,
             color: iconColor !== null && iconColor !== void 0 ? iconColor : '#bcbcbc',
+            name: 'magnify-close',
+        })
+
+        return (0, react_1.createElement)(react_native_1.View, { style: styles.searchContainer }, (0, react_1.createElement)(MaterialCommunityIcons_1.default, {
+            key: 'a',
+            size: '12px',
+            style: styles.searchIcon,
+            color: '#bcbcbc',
             name: 'magnify',
         }), (0, react_1.createElement)(react_native_1.TextInput, {
             key: 'b',
@@ -355,8 +394,8 @@ class EmojiModal extends react_1.PureComponent {
                 return true;
             }
         });
-        const groupedEmojis = groupBy(this.filteredEmojis, (emoji) => emoji.category);
-        this.emojisByCategory = mapValues(groupedEmojis, (group) => group.map(charFromEmojiObj));
+        const groupedEmojis = justGroupByAgain(this.filteredEmojis, (emoji) => emoji.category);
+        this.emojisByCategory = justMapValues(groupedEmojis, (group) => group.map(charFromEmojiObj));
     }
     calculateLayouts(props) {
         let heightsSoFar = 0;
@@ -408,3 +447,4 @@ class EmojiModal extends react_1.PureComponent {
 }
 exports.default = EmojiModal;
 //# sourceMappingURL=index.js.map
+
