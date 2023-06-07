@@ -90,7 +90,7 @@ const styles = react_native_1.StyleSheet.create({
         zIndex: -1,
     },
     container: {
-        backgroundColor: 'white',
+        backgroundColor: '#141414',
         padding: 0,
         borderRadius: 10,
         flexDirection: 'column',
@@ -110,12 +110,12 @@ const styles = react_native_1.StyleSheet.create({
         position: 'relative',
         flexDirection: 'row',
         paddingTop: PADDING,
-        paddingHorizontal: PADDING,
+        paddingHorizontalLeft: PADDING,
         paddingBottom: 2,
     },
     search: {
         flex: 1,
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#212121',
         marginTop: 3,
         marginHorizontal: 3,
         height: 4 + 20 + 4,
@@ -123,7 +123,7 @@ const styles = react_native_1.StyleSheet.create({
         paddingLeft: 32,
         paddingRight: 12,
         borderRadius: 3,
-        color: '#2f2f2f',
+        color: '#979797',
         zIndex: 10,
     },
     searchIcon: {
