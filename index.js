@@ -4,7 +4,6 @@ const react_1 = require("react");
 const react_native_1 = require("react-native");
 const MaterialCommunityIcons_1 = require("react-native-vector-icons/MaterialCommunityIcons");
 const noop = () => { };
-
 const justGroupBy = (array, keyFn) => {
     return array.reduce((result, item) => {
         const key = keyFn(item);
@@ -14,20 +13,16 @@ const justGroupBy = (array, keyFn) => {
         result[key].push(item);
         return result;
     }, {});
-}
-
+};
 const justMapValues = (obj, callback) => {
     const result = {};
-
     for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
             result[key] = callback(obj[key]);
         }
     }
-
     return result;
-}
-
+};
 // Conversion of codepoints and surrogate pairs. See more here:
 // https://mathiasbynens.be/notes/javascript-unicode
 // https://mathiasbynens.be/notes/javascript-escapes#unicode-code-point
@@ -208,19 +203,11 @@ class EmojiCategory extends react_1.PureComponent {
 class SearchField extends react_1.PureComponent {
     render() {
         const { customStyle, iconColor, onChanged } = this.props;
-        console.log('++ MaterialCommunityIcons_1', MaterialCommunityIcons_1.default, {
+        return (0, react_1.createElement)(react_native_1.View, { style: styles.searchContainer }, (0, react_1.createElement)(MaterialCommunityIcons_1.default, {
             key: 'a',
             size: SEARCH_ICON_SIZE,
             style: styles.searchIcon,
             color: iconColor !== null && iconColor !== void 0 ? iconColor : '#bcbcbc',
-            name: 'magnify-close',
-        })
-
-        return (0, react_1.createElement)(react_native_1.View, { style: styles.searchContainer }, (0, react_1.createElement)(MaterialCommunityIcons_1.default, {
-            key: 'a',
-            size: '12px',
-            style: styles.searchIcon,
-            color: '#bcbcbc',
             name: 'magnify',
         }), (0, react_1.createElement)(react_native_1.TextInput, {
             key: 'b',
@@ -438,4 +425,3 @@ class EmojiModal extends react_1.PureComponent {
 }
 exports.default = EmojiModal;
 //# sourceMappingURL=index.js.map
-
