@@ -223,7 +223,6 @@ class EmojiGroup extends PureComponent<{
     const style = {
       width: size,
       height: size,
-      boxSizing: "content-box",
       fontSize: size * 0.8,
       textAlign: "center" as const,
       lineHeight: size,
