@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
   },
 
   shortcutsContainer: {
-    display: "hidden",
+    display: "none",
     flexDirection: "row",
     justifyContent: "space-between",
     padding: PADDING,
