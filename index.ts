@@ -153,8 +153,9 @@ const styles = StyleSheet.create({
     position: "relative",
     flexDirection: "row",
     paddingTop: PADDING,
-    paddingHorizontalLeft: PADDING,
+    paddingHorizontal: 6,
     paddingBottom: 2,
+    borderRadius: 100,
   },
 
   search: {
@@ -162,19 +163,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#212121",
     marginTop: 3,
     marginHorizontal: 3,
-    height: 4 + 20 + 4,
+    height: 36,
     paddingVertical: 4,
-    paddingLeft: 32,
+    paddingLeft: 34,
     paddingRight: 12,
-    borderRadius: 3,
+    borderRadius: 10,
     color: "#979797",
     zIndex: 10,
   },
 
   searchIcon: {
     position: "absolute",
-    left: 16,
-    top: PADDING + 3 + 4,
+    left: 17,
+    top: 15,
     zIndex: 20,
   },
 
@@ -306,7 +307,7 @@ class SearchField extends PureComponent<{
       { style: styles.searchContainer },
       $(Icon, {
         key: "a",
-        size: SEARCH_ICON_SIZE,
+        size: 24,
         style: styles.searchIcon,
         color: iconColor ?? "#bcbcbc",
         name: "magnify",
